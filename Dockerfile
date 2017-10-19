@@ -29,6 +29,9 @@ RUN apk --update add wget bash apache-ant \
   && printf "#!/bin/sh\necho $LANG" > /usr/bin/locale \
   && chmod +x entrypoint.sh /usr/bin/locale
 
+# override the main configuration
+ADD conf.xml conf.xml
+
 CMD ${EXIST_HOME}/entrypoint.sh
 
 EXPOSE 8080 8443
