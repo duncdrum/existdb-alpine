@@ -4,7 +4,7 @@ set -e
 # catch missing password
 if [ -n "$EXIST_ADMIN_PASSWORD" ]; then
 # inject password
-/opt/exist/bin/client.sh -l -s -u admin -P \$adminPasswd << EOF 
+bin/client.sh -l -s -u admin << EOF
 passwd admin
 ${EXIST_ADMIN_PASSWORD}
 ${EXIST_ADMIN_PASSWORD}
@@ -13,4 +13,4 @@ EOF
 fi
 
 # lets start exist...
-exec /opt/exist/bin/startup.sh
+exec bin/startup.sh
