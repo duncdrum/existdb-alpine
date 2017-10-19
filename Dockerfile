@@ -11,6 +11,8 @@ ENV VERSION=${VERSION:-3.5.0} \
 WORKDIR ${EXIST_HOME}
 ADD entrypoint.sh entrypoint.sh
 
+VOLUME ${EXIST_HOME}/webapp/WEB-INF/data/
+
 # eXistDB needs ant to automate common tasks like backup/restore or importing
 RUN apk --update add wget bash apache-ant \
   && wget -q -O '/tmp/exist.jar' "https://bintray.com/existdb/releases/download_file?file_path=eXist-db-setup-$VERSION.jar" \
@@ -28,6 +30,5 @@ RUN apk --update add wget bash apache-ant \
   && chmod +x entrypoint.sh /usr/bin/locale
 
 CMD ${EXIST_HOME}/entrypoint.sh
-VOLUME ${EXIST_HOME}/webapp/WEB-INF/data/
 
 EXPOSE 8080 8443
